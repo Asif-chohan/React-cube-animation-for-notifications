@@ -1,0 +1,280 @@
+/*** View Stage ***/
+#viewStage {
+  width: 90%;
+  height: 1px;
+  margin: 58px auto;
+  perspective: 450px;
+  -webkit-perspective: 450px;
+  perspective-origin: 50% 50%;
+  -webkit-perspective-origin: 50% 50%;
+}
+
+/*** Browsers fix ***/
+#overlay {
+  width: 100%;
+  height: 100%;
+  background-color: #f4f4f4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+#overlay span {
+  display: block;
+  width: 500px;
+  margin: 9em auto;
+  font-size: 24px;
+  line-height: 175%;
+  text-align: center;
+}
+.support {
+  display: none;
+}
+.unsupport {
+  display: block;
+}
+
+/*** Mozilla fix ***/
+@-moz-document url-prefix() {
+  #overlay {
+    display: none;
+  }
+  #viewStage {
+    overflow: hidden;
+  }
+  .support {
+    display: none;
+  }
+  .unsupport {
+    display: block;
+  }
+}
+
+/*** Webkit browser ***/
+@media screen and (-webkit-transform-3d) {
+  #overlay {
+    display: none;
+  }
+  .support {
+    display: block;
+  }
+  .unsupport {
+    display: none;
+  }
+}
+
+/*** Keyframes ***/
+@keyframes rotation {
+  from,
+  to {
+  }
+  10%,
+  25% {
+    -webkit-transform: rotateX(90deg);
+    animation-duration: 10s
+  }
+  35%,
+  50% {
+    -webkit-transform: rotateX(180deg);
+  }
+  60%,
+  75% {
+    -webkit-transform: rotateX(270deg);
+  }
+  85%,
+  100% {
+    -webkit-transform: rotateX(360deg);
+  }
+}
+@-moz-keyframes rotation {
+  from,
+  to {
+  }
+  10%,
+  25% {
+    -moz-transform: translateY(0px);
+  }
+  35%,
+  50% {
+    -moz-transform: translateY(-300px);
+  }
+  60%,
+  75% {
+    -moz-transform: translateY(-600px);
+  }
+  85%,
+  100% {
+    -moz-transform: translateY(-900px);
+  }
+}
+
+/*** Cube ***/
+.cube {
+  position: relative;
+  float: left;
+  width: 90%;
+  height: 50px;
+
+  /* Transform */
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+
+  /* Animation */
+  animation-name: rotation;
+  animation-timing-function: ease;
+  /* animation-timing-function: cubic-bezier(0.6, -1, 0.4, 1.5); */
+  animation-iteration-count: infinite;
+  animation-duration: 40s;
+  -webkit-animation-name: rotation;
+  -webkit-animation-timing-function: ease;
+  /* -webkit-animation-timing-function: cubic-bezier(0.6, -1, 0.4, 1.5); */
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 40s;
+
+  -moz-animation-name: rotation;
+  -moz-animation-timing-function: ease;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-duration: 40s;
+}
+
+/* Cube delay and z-index fix */
+#cube1 {
+  z-index: 1;
+  animation-delay: 10s;
+  -webkit-animation-delay: 10s;
+  -moz-animation-delay: 10s;
+}
+#cube2 {
+  z-index: 2;
+  animation-delay: 10s;
+  -webkit-animation-delay: 10s;
+  -moz-animation-delay: 10s;
+}
+#cube3 {
+  z-index: 1;
+  animation-delay: 10s;
+  -webkit-animation-delay: 10s;
+  -moz-animation-delay: 10s;
+}
+
+/*** Cube's face Style ***/
+.cube div {
+  background-size: 450px 50px;
+  position: absolute;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+.cube div.fb {
+  width: 90%;
+  margin: auto;
+  border-radius: 7px;
+  padding: 18px 30px;
+  color:#fff;
+}
+.cube div.tb {
+  width: 90%;
+  margin: auto;
+  border-radius: 7px;
+  padding: 18px 30px;
+  color:#fff;
+  
+}
+/* .cube div.lr{
+	width: 90%;
+	height: 50px;
+} */
+
+/* Face image and position */
+.facefront {
+  background-color: #5bc0de;
+  transform: translateZ(25px);
+  -webkit-transform: translateZ(25px);
+  -moz-transform: translateY(0px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.faceback {
+  background-color: #5bc0de;
+  transform: rotateY(180deg) rotateZ(180deg) translateZ(25px);
+  -webkit-transform: rotateY(180deg) rotateZ(180deg) translateZ(25px);
+  -moz-transform: translateY(0px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.facetop {
+  background-color: #f0ad4e;
+  transform: rotateX(90deg) translateZ(25px);
+  -webkit-transform: rotateX(90deg) translateZ(25px);
+  -moz-transform: translateY(600px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.facebottom {
+  background-color: #f0ad4e;
+  transform: rotateX(-90deg) translateZ(25px);
+  -webkit-transform: rotateX(-90deg) translateZ(25px);
+  -moz-transform: translateY(900px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.faceleft {
+  background-color: #5bc0de;
+  transform: rotateY(90deg) translateZ(25px);
+  -webkit-transform: rotateY(90deg) translateZ(25px);
+  -moz-transform: scaleX(0);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.faceright {
+  background-color: #f0ad4e;
+  transform: rotateY(-90deg) translateZ(25px);
+  -webkit-transform: rotateY(-90deg) translateZ(25px);
+  -moz-transform: scaleX(0);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#cube1 div {
+  background-position: 0 0;
+}
+#cube2 div {
+  background-position: -150px 0;
+}
+#cube3 div {
+  background-position: -300px 0;
+}
+
+.loader {
+  height: 3px;
+  position: relative;
+  background-color: #fff;
+  -webkit-animation-name: loader;
+  animation-name: loader;
+  -webkit-animation-duration: 10s;
+  animation-duration: 10.4s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  margin-left: 37px;
+  margin-top: -7px;
+  animation-delay: 2.5s;
+}
+@keyframes loader {
+    0%   {width:1px}
+    70%  {width:90%}
+    93% {width:95% ; background-color:transparent}
+    100% {width:95% ; background-color:transparent}
+
+  }
+.cube:hover  { 
+  -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+     animation-play-state: paused;
+}
+.loaderparent:hover .loader{ 
+  -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+     animation-play-state: paused;
+}
+
